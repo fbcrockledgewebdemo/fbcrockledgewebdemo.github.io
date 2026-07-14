@@ -1,0 +1,38 @@
+<header class="site-header">
+  {% capture navigation_links %}
+    <li class="nav-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+    <li class="nav-item"><a href="{{ '/about' | relative_url }}">About</a></li>
+    <li class="nav-item"><a href="{{ '/events' | relative_url }}">Events</a></li>
+    <li class="nav-item"><a href="{{ '/services' | relative_url }}">Services</a></li>
+    <li class="nav-item"><a href="{{ '/blog' | relative_url }}">Blog</a></li>
+    <li class="nav-item"><a href="{{ '/contact' | relative_url }}">Contact</a></li>
+  {% endcapture %}
+
+  <div class="header-top-rule" aria-hidden="true"></div>
+
+  <div class="header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="First Baptist Church of Rockledge home">
+      <span class="brand-dove" aria-hidden="true"></span>
+      <span class="brand-copy">
+        <span class="brand-name">First Baptist Church</span>
+        <span class="brand-location">of Rockledge</span>
+        <span class="brand-tagline">Honoring God Through Authentic Worship</span>
+      </span>
+    </a>
+
+    <nav class="site-nav desktop-nav" aria-label="Main navigation">
+      <ul class="nav-list">{{ navigation_links }}</ul>
+    </nav>
+
+    <div class="mobile-menu">
+      <button class="menu-toggle" type="button" aria-label="Main menu" aria-controls="mobile-navigation" aria-expanded="false">
+        <span class="menu-toggle-label">Menu</span>
+        <span class="menu-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+
+      <nav class="site-nav" id="mobile-navigation" aria-label="Main navigation">
+        <ul class="nav-list">{{ navigation_links }}</ul>
+      </nav>
+    </div>
+  </div>
+</header>

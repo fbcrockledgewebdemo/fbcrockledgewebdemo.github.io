@@ -1,0 +1,591 @@
+/* ==========================================================
+   First Baptist Church of Rockledge — Foundational styles
+   Header, navigation, footer, blank page body, and palette.
+   ========================================================== */
+
+:root {
+  /* Primary purple palette */
+  --purple-950: #160d21;
+  --purple-900: #241332;
+  --purple-850: #2d183d;
+  --purple-800: #351c49;
+  --purple-700: #4b2a62;
+  --purple-600: #624077;
+
+  /* Gold palette */
+  --gold-700: #8f6b27;
+  --gold-600: #ad8435;
+  --gold-500: #c7a355;
+  --gold-400: #d8bc75;
+  --gold-300: #e7d39a;
+
+  /* Text colors */
+  --text-primary: #251f29;
+  --text-secondary: #615866;
+  --text-on-dark: #fffaf0;
+  --text-gold: #e7cf8d;
+
+  /* Backgrounds and surfaces */
+  --page-background: #f5f0e6;
+  --surface-light: #fffaf2;
+  --surface-muted: #ece4d6;
+  --surface-dark: var(--purple-900);
+  --header-background:
+    radial-gradient(circle at 18% 0%, rgba(98, 64, 119, 0.4), transparent 34rem),
+    linear-gradient(110deg, var(--purple-950), var(--purple-900) 52%, var(--purple-850));
+
+  /* Borders and effects */
+  --border-gold: rgba(199, 163, 85, 0.88);
+  --border-light: rgba(143, 107, 39, 0.25);
+  --shadow-soft: 0 12px 30px rgba(22, 13, 33, 0.16);
+  --shadow-menu: 0 16px 32px rgba(13, 7, 20, 0.28);
+
+  /* Typography */
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: Georgia, "Times New Roman", serif;
+
+  /* Layout */
+  --content-width: 1180px;
+  --footer-content-width: 1080px;
+  --page-gutter: clamp(1rem, 3vw, 2rem);
+  --header-height: 9rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+  background: var(--purple-850);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-primary);
+  background: var(--purple-850);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+/* ------------------------- Header ------------------------- */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  color: var(--text-on-dark);
+  background: var(--header-background);
+  border-bottom: 1px solid var(--gold-500);
+  box-shadow: 0 5px 18px rgba(22, 13, 33, 0.18);
+}
+
+.header-top-rule {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--gold-700),
+    var(--gold-300) 48%,
+    var(--gold-700)
+  );
+}
+
+.header-inner {
+  width: min(100% - (2 * var(--page-gutter)), var(--content-width));
+  min-height: var(--header-height);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 1 auto;
+  text-decoration: none;
+}
+
+.brand-dove {
+  width: 3.8rem;
+  height: 3.8rem;
+  flex: 0 0 auto;
+  display: block;
+  background: var(--gold-400);
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+  -webkit-mask: url("../images/dove.svg") center / contain no-repeat;
+  mask: url("../images/dove.svg") center / contain no-repeat;
+  transform: translateY(-0.1rem) rotate(-8deg);
+}
+
+.brand-copy {
+  display: grid;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.4vw, 2.5rem);
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+}
+
+.brand-location {
+  margin-top: 0.2rem;
+  color: var(--text-gold);
+  font-size: 1rem;
+  font-variant: small-caps;
+  letter-spacing: 0.19em;
+  text-align: center;
+}
+
+.brand-tagline {
+  position: relative;
+  margin-top: 0.65rem;
+  color: rgba(255, 250, 240, 0.84);
+  font-size: 0.88rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.brand-tagline::before,
+.brand-tagline::after {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1px;
+  margin: 0 0.5rem 0.2rem;
+  background: var(--gold-500);
+}
+
+/* ---------------------- Main navigation ------------------- */
+
+.mobile-menu {
+  display: none;
+}
+
+.site-nav {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 0.8rem;
+  color: var(--text-on-dark);
+  background: transparent;
+  border: 1px solid rgba(231, 211, 154, 0.55);
+  border-radius: 0.2rem;
+  font: inherit;
+  font-size: 0.94rem;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.menu-toggle-icon {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.menu-toggle-icon span {
+  display: block;
+  width: 1.35rem;
+  height: 2px;
+  background: var(--gold-300);
+}
+
+.nav-list {
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item > a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-height: var(--header-height);
+  padding: 0 1.15rem;
+  color: var(--text-on-dark);
+  font-size: 1.18rem;
+  font-variant: small-caps;
+  letter-spacing: 0.07em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 160ms ease;
+}
+
+.nav-item > a:hover,
+.nav-item > a:focus-visible,
+.nav-item:focus-within > a {
+  color: var(--text-gold);
+}
+
+/* ---------------------- Blank page body ------------------- */
+
+.page-content {
+  flex: 1 0 auto;
+  min-height: clamp(28rem, 58vh, 46rem);
+  background: var(--page-background);
+}
+
+.site-header,
+.site-footer {
+  flex: 0 0 auto;
+}
+
+/* ------------------------- Footer ------------------------- */
+
+.site-footer {
+  position: relative;
+  color: var(--text-on-dark);
+  background:
+    radial-gradient(circle at 90% 100%, rgba(75, 42, 98, 0.46), transparent 30rem),
+    linear-gradient(115deg, var(--purple-950), var(--purple-900) 55%, #1e1229);
+}
+
+.footer-gold-rule {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--gold-700),
+    var(--gold-300) 50%,
+    var(--gold-700)
+  );
+}
+
+.footer-inner {
+  width: min(100% - (2 * var(--page-gutter)), var(--footer-content-width));
+  margin-inline: auto;
+  padding: 2.6rem 0 2.2rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.footer-brand,
+.footer-section {
+  min-width: 0;
+}
+
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.footer-dove {
+  width: 2.8rem;
+  height: 2.8rem;
+  flex: 0 0 auto;
+  display: block;
+  background: var(--gold-400);
+  -webkit-mask: url("../images/dove.svg") center / contain no-repeat;
+  mask: url("../images/dove.svg") center / contain no-repeat;
+  transform: rotate(-8deg);
+}
+
+.site-footer h2 {
+  margin: 0;
+  color: var(--text-gold);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+}
+
+.footer-brand h2 {
+  color: var(--text-on-dark);
+  font-size: 1.22rem;
+}
+
+.footer-location {
+  margin: 0.2rem 0 0;
+  color: var(--text-gold);
+  font-size: 0.78rem;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+}
+
+.footer-statement {
+  max-width: 26rem;
+  margin: 1rem 0 0;
+  color: rgba(255, 250, 240, 0.72);
+  font-size: 0.86rem;
+  font-style: italic;
+}
+
+.footer-section {
+  padding-left: 2rem;
+  border-left: 1px solid rgba(231, 211, 154, 0.26);
+}
+
+.service-times {
+  margin: 0.8rem 0 0;
+}
+
+.service-times > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.33rem 0;
+  border-bottom: 1px dotted rgba(231, 211, 154, 0.25);
+}
+
+.service-times > div:last-child {
+  border-bottom: 0;
+}
+
+.service-times dt,
+.service-times dd {
+  margin: 0;
+  color: rgba(255, 250, 240, 0.82);
+  font-size: 0.8rem;
+}
+
+.service-times dd {
+  text-align: right;
+  white-space: nowrap;
+  color: var(--text-gold);
+  font-weight: 600;
+}
+
+.site-footer address {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.8rem;
+  font-style: normal;
+}
+
+.site-footer address p {
+  margin: 0;
+  color: rgba(255, 250, 240, 0.82);
+  font-size: 0.82rem;
+}
+
+.site-footer address a {
+  justify-self: start;
+  color: rgba(255, 250, 240, 0.82);
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.site-footer address .footer-directions {
+  color: var(--text-gold);
+}
+
+.site-footer address a:hover,
+.site-footer address a:focus-visible,
+.footer-bottom a:hover,
+.footer-bottom a:focus-visible {
+  color: var(--text-gold);
+}
+
+.footer-bottom {
+  width: min(100% - (2 * var(--page-gutter)), var(--footer-content-width));
+  margin-inline: auto;
+  padding: 1rem 0 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgba(255, 250, 240, 0.58);
+  border-top: 1px solid rgba(231, 211, 154, 0.18);
+  font-size: 0.74rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-bottom nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ----------------------- Accessibility -------------------- */
+
+a:focus-visible,
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--gold-300);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------- Responsive layout ----------------- */
+
+@media (max-width: 1040px) {
+  .header-inner {
+    min-height: 7.25rem;
+    padding: 1rem 0;
+    justify-content: flex-start;
+    gap: clamp(1.25rem, 5vw, 2.25rem);
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    padding: 0.6rem 0.3rem;
+    border-color: transparent;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+    order: -1;
+    flex: 0 0 auto;
+    align-self: auto;
+  }
+
+  .menu-toggle-label {
+    display: none;
+  }
+
+  .brand {
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .brand-dove {
+    display: none;
+  }
+
+  .mobile-menu > .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    display: none;
+    width: 100%;
+    background: var(--purple-900);
+    border: 1px solid var(--gold-600);
+    border-bottom: 2px solid var(--gold-600);
+    box-shadow: var(--shadow-menu);
+  }
+
+  .mobile-menu.is-open > .site-nav {
+    display: block;
+  }
+
+  .nav-list {
+    display: block;
+    width: 100%;
+    padding: 0.45rem 0;
+  }
+
+  .nav-item > a {
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0 1rem;
+    font-size: 1.15rem;
+    border-bottom: 1px solid rgba(231, 211, 154, 0.16);
+  }
+
+  .nav-item:last-child > a {
+    border-bottom: 0;
+  }
+
+}
+
+@media (max-width: 760px) {
+  .brand {
+    width: auto;
+  }
+
+  .brand-tagline {
+    text-align: center;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-section {
+    padding: 1.7rem 0 0;
+    border-top: 1px solid rgba(231, 211, 154, 0.24);
+    border-left: 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand {
+    align-items: flex-start;
+  }
+
+  .brand-dove {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .brand-name {
+    font-size: 1.5rem;
+  }
+
+  .brand-location {
+    font-size: 0.92rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.82rem;
+  }
+
+  .brand-tagline::before,
+  .brand-tagline::after {
+    display: none;
+  }
+
+  .service-times > div {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+
+  .service-times dd {
+    text-align: left;
+  }
+}
