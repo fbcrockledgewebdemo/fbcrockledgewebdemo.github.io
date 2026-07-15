@@ -1,6 +1,9 @@
 title: First Baptist Church of Rockledge
 url: "https://fbcrockledge.org"
 
+plugins:
+  - jekyll-sitemap
+
 # Leave empty for a custom domain. For a project Pages site, set this to the
 # repository path, for example: "/FirstBaptistChurchRockledge".
 baseurl: ""
