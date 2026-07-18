@@ -18,13 +18,29 @@ description: Learn about First Baptist Church of Rockledge, a Southern Baptist c
         <h2 id="gallery-heading">A Glimpse of Our Church Family</h2>
         <p>Scroll through a few moments from worship, fellowship, and ministry at First Baptist Church of Rockledge.</p>
       </div>
-      <div class="about-gallery-track" tabindex="0" aria-label="Church photo gallery">
+      <p class="about-gallery-hint">Scroll to explore the gallery, then select a photo to view it larger.</p>
+      <div class="about-gallery-track" data-gallery-track tabindex="0" aria-label="Church photo gallery">
         {% for photo in site.data.about_gallery.gallery %}
           <figure>
-            <img src="{{ photo.image | relative_url }}" alt="{{ photo.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" decoding="async">
+            <button class="about-gallery-trigger" type="button" data-gallery-trigger aria-label="View photo {{ forloop.index }} of {{ forloop.length }}: {{ photo.alt | escape }}">
+              <img src="{{ photo.image | relative_url }}" alt="{{ photo.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" decoding="async">
+            </button>
           </figure>
         {% endfor %}
       </div>
+
+      <dialog class="about-gallery-lightbox" data-gallery-dialog aria-label="Church photo viewer">
+        <div class="about-gallery-lightbox-header">
+          <p data-gallery-position aria-live="polite"></p>
+          <button class="about-gallery-lightbox-close" type="button" data-gallery-close aria-label="Close photo viewer">Close <span aria-hidden="true">×</span></button>
+        </div>
+        <img data-gallery-image src="" alt="">
+        <p class="about-gallery-lightbox-caption" data-gallery-caption></p>
+        <div class="about-gallery-lightbox-controls">
+          <button type="button" data-gallery-previous>← Previous</button>
+          <button type="button" data-gallery-next>Next →</button>
+        </div>
+      </dialog>
     </section>
 
     <section class="about-values" aria-labelledby="values-heading">
@@ -76,3 +92,5 @@ description: Learn about First Baptist Church of Rockledge, a Southern Baptist c
     </section>
   </div>
 </section>
+
+<script src="{{ '/assets/js/gallery-lightbox.js' | relative_url }}" defer></script>
