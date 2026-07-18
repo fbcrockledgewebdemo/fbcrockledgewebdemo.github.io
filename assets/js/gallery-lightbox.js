@@ -3,7 +3,6 @@ document.querySelectorAll("[data-gallery-track]").forEach((track) => {
   const dialog = gallery.querySelector("[data-gallery-dialog]");
   const triggers = [...track.querySelectorAll("[data-gallery-trigger]")];
   const image = dialog.querySelector("[data-gallery-image]");
-  const caption = dialog.querySelector("[data-gallery-caption]");
   const position = dialog.querySelector("[data-gallery-position]");
   const close = dialog.querySelector("[data-gallery-close]");
   const previous = dialog.querySelector("[data-gallery-previous]");
@@ -16,7 +15,6 @@ document.querySelectorAll("[data-gallery-track]").forEach((track) => {
 
     image.src = thumbnail.currentSrc || thumbnail.src;
     image.alt = thumbnail.alt;
-    caption.textContent = thumbnail.alt;
     position.textContent = `Photo ${activeIndex + 1} of ${triggers.length}`;
   };
 

@@ -18,8 +18,7 @@ description: Learn about First Baptist Church of Rockledge, a Southern Baptist c
         <h2 id="gallery-heading">A Glimpse of Our Church Family</h2>
         <p>Scroll through a few moments from worship, fellowship, and ministry at First Baptist Church of Rockledge.</p>
       </div>
-      <p class="about-gallery-hint">Scroll to explore the gallery, then select a photo to view it larger.</p>
-      <div class="about-gallery-track" data-gallery-track tabindex="0" aria-label="Church photo gallery">
+      <div class="about-gallery-track" data-gallery-track>
         {% for photo in site.data.about_gallery.gallery %}
           <figure>
             <button class="about-gallery-trigger" type="button" data-gallery-trigger aria-label="View photo {{ forloop.index }} of {{ forloop.length }}: {{ photo.alt | escape }}">
@@ -35,7 +34,6 @@ description: Learn about First Baptist Church of Rockledge, a Southern Baptist c
           <button class="about-gallery-lightbox-close" type="button" data-gallery-close aria-label="Close photo viewer">Close <span aria-hidden="true">×</span></button>
         </div>
         <img data-gallery-image src="" alt="">
-        <p class="about-gallery-lightbox-caption" data-gallery-caption></p>
         <div class="about-gallery-lightbox-controls">
           <button type="button" data-gallery-previous>← Previous</button>
           <button type="button" data-gallery-next>Next →</button>
@@ -50,9 +48,9 @@ description: Learn about First Baptist Church of Rockledge, a Southern Baptist c
       </div>
       <ol class="about-values-list">
         <li><span aria-hidden="true">01</span><p>Honoring God through authentic worship.</p></li>
-        <li><span aria-hidden="true">02</span><p>Loving fellow believers as Christ loves us.</p></li>
-        <li><span aria-hidden="true">03</span><p>Growing in Christlikeness through discipleship.</p></li>
-        <li><span aria-hidden="true">04</span><p>Every member serving in ministry.</p></li>
+        <li><span aria-hidden="true">02</span><p>Loving all people as Christ loves us.</p></li>
+        <li><span aria-hidden="true">03</span><p>Growing to be more like Christ through discipleship.</p></li>
+        <li><span aria-hidden="true">04</span><p>Every member serving faithfully in ministry.</p></li>
         <li><span aria-hidden="true">05</span><p>Sharing the Gospel with our community and the world.</p></li>
       </ol>
     </section>
