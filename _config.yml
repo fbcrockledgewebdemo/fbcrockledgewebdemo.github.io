@@ -1,5 +1,8 @@
 title: First Baptist Church of Rockledge
 url: "https://fbcrockledge.org"
+timezone: America/New_York
+future: true
+permalink: /blog/:year/:month/:day/:title/
 
 plugins:
   - jekyll-sitemap
@@ -7,3 +10,21 @@ plugins:
 # Leave empty for a custom domain. For a project Pages site, set this to the
 # repository path, for example: "/FirstBaptistChurchRockledge".
 baseurl: ""
+
+collections:
+  events:
+    output: true
+    future: true
+    permalink: /events/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: events
+    values:
+      layout: event
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

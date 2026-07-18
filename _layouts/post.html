@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<article class="content-detail post-detail">
+  <div class="content-shell">
+    <a class="content-back-link" href="{{ '/blog' | relative_url }}">← All posts</a>
+
+    <header class="content-detail-header">
+      <p class="content-eyebrow">Church news</p>
+      <h1>{{ page.title }}</h1>
+      <p class="content-detail-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.author %} <span aria-hidden="true">·</span> {{ page.author }}{% endif %}</p>
+    </header>
+
+    {% assign image_path = page.image | default: "" | strip %}
+    {% assign image_alt = page.image_alt | default: "" | strip %}
+    {% if image_path != "" and image_alt != "" %}
+      <figure class="content-detail-image">
+        <img src="{{ image_path | relative_url }}" alt="{{ image_alt | escape }}">
+      </figure>
+    {% endif %}
+
+    <div class="content-prose">
+      {{ content }}
+    </div>
+
+    {% include share-links.html kind="post" %}
+  </div>
+</article>

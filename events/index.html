@@ -3,3 +3,92 @@ layout: default
 title: Events | First Baptist Church of Rockledge
 description: Upcoming events at First Baptist Church of Rockledge.
 ---
+{% assign current_timestamp = site.time | date: "%s" %}
+{% assign events = site.events | sort: "start" %}
+
+<section class="content-index" aria-labelledby="events-heading">
+  <div class="content-shell">
+    <header class="content-index-header">
+      <p class="content-eyebrow">Gather with us</p>
+      <h1 id="events-heading">Upcoming Events</h1>
+      <p>Join us for worship, fellowship, and opportunities to grow together in Christ.</p>
+    </header>
+
+    <div class="content-card-list">
+      {% assign has_upcoming_events = false %}
+      {% for event in events %}
+        {% assign event_end = event.end | default: "" | strip %}
+        {% if event_end != "" %}
+          {% assign end_timestamp = event.end | date: "%s" %}
+        {% else %}
+          {% assign end_timestamp = event.start | date: "%Y-%m-%d 23:59:59 %z" | date: "%s" %}
+        {% endif %}
+        {% if end_timestamp >= current_timestamp %}
+          {% assign has_upcoming_events = true %}
+          <article class="content-card event-card">
+            {% assign image_path = event.image | default: "" | strip %}
+            {% assign image_alt = event.image_alt | default: "" | strip %}
+            {% if image_path != "" and image_alt != "" %}
+              <a class="content-card-image" href="{{ event.url | relative_url }}">
+                <img src="{{ image_path | relative_url }}" alt="{{ image_alt | escape }}">
+              </a>
+            {% endif %}
+            <div class="content-card-body">
+              {% include event-meta.html event=event %}
+              <h2><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h2>
+              {% if event.summary %}<p>{{ event.summary }}</p>{% endif %}
+              <a class="content-card-link" href="{{ event.url | relative_url }}">Event details <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+
+      {% unless has_upcoming_events %}
+        <p class="content-empty-state">More opportunities to gather will be announced soon. Please join us for Sunday worship at 11:00 AM.</p>
+      {% endunless %}
+    </div>
+
+    <section class="content-section" id="past-events" aria-labelledby="past-events-heading">
+      <header class="content-section-header">
+        <p class="content-eyebrow">Remembering Our Time Together</p>
+        <h2 id="past-events-heading">Past Events</h2>
+      </header>
+
+      <div class="content-card-list">
+        {% assign past_event_count = 0 %}
+        {% for event in events reversed %}
+          {% assign event_end = event.end | default: "" | strip %}
+          {% if event_end != "" %}
+            {% assign end_timestamp = event.end | date: "%s" %}
+          {% else %}
+            {% assign end_timestamp = event.start | date: "%Y-%m-%d 23:59:59 %z" | date: "%s" %}
+          {% endif %}
+          {% if end_timestamp < current_timestamp and past_event_count < 3 %}
+            <article class="content-card event-card">
+              {% assign image_path = event.image | default: "" | strip %}
+              {% assign image_alt = event.image_alt | default: "" | strip %}
+              {% if image_path != "" and image_alt != "" %}
+                <a class="content-card-image" href="{{ event.url | relative_url }}">
+                  <img src="{{ image_path | relative_url }}" alt="{{ image_alt | escape }}" loading="lazy">
+                </a>
+              {% endif %}
+              <div class="content-card-body">
+                {% include event-meta.html event=event %}
+                <h3><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h3>
+                {% if event.summary %}<p>{{ event.summary }}</p>{% endif %}
+                <a class="content-card-link" href="{{ event.url | relative_url }}">Event details <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+            {% assign past_event_count = past_event_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+
+        {% if past_event_count == 0 %}
+          <p class="content-empty-state">Past events will be shared here as our church gathers together.</p>
+        {% endif %}
+      </div>
+
+      <p class="content-section-action"><a href="{{ '/events/past/' | relative_url }}">See All Past Events <span aria-hidden="true">→</span></a></p>
+    </section>
+  </div>
+</section>

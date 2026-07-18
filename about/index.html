@@ -1,5 +1,78 @@
 ---
 layout: default
 title: About | First Baptist Church of Rockledge
-description: Learn about First Baptist Church of Rockledge.
+description: Learn about First Baptist Church of Rockledge, a Southern Baptist church in Brevard County committed to authentic worship, biblical teaching, and meaningful relationships.
 ---
+<section class="about-page" aria-labelledby="about-heading">
+  <div class="about-shell">
+    <header class="about-intro">
+      <p class="content-eyebrow">About First Baptist Church of Rockledge</p>
+      <h1 id="about-heading">A Church Family Rooted in Christ</h1>
+      <p>We are a Christ-centered community committed to authentic worship, biblical teaching, and meaningful relationships. Whether you are new to the area, exploring faith, or looking for a church home, you will find a warm welcome here.</p>
+      <p>First Baptist Church of Rockledge has served Brevard County for generations, sharing the Good News of Jesus locally and globally.</p>
+    </header>
+
+    <section class="about-gallery" aria-labelledby="gallery-heading">
+      <div class="about-section-heading">
+        <p class="content-eyebrow">Life together</p>
+        <h2 id="gallery-heading">A Glimpse of Our Church Family</h2>
+        <p>Scroll through a few moments from worship, fellowship, and ministry at First Baptist Church of Rockledge.</p>
+      </div>
+      <div class="about-gallery-track" tabindex="0" aria-label="Church photo gallery">
+        {% for photo in site.data.about_gallery.gallery %}
+          <figure>
+            <img src="{{ photo.image | relative_url }}" alt="{{ photo.alt | escape }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" decoding="async">
+          </figure>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="about-values" aria-labelledby="values-heading">
+      <div class="about-section-heading">
+        <p class="content-eyebrow">What guides us</p>
+        <h2 id="values-heading">Core Values</h2>
+      </div>
+      <ol class="about-values-list">
+        <li><span aria-hidden="true">01</span><p>Honoring God through authentic worship.</p></li>
+        <li><span aria-hidden="true">02</span><p>Loving fellow believers as Christ loves us.</p></li>
+        <li><span aria-hidden="true">03</span><p>Growing in Christlikeness through discipleship.</p></li>
+        <li><span aria-hidden="true">04</span><p>Every member serving in ministry.</p></li>
+        <li><span aria-hidden="true">05</span><p>Sharing the Gospel with our community and the world.</p></li>
+      </ol>
+    </section>
+
+    <section class="about-beliefs" aria-labelledby="beliefs-heading">
+      <div class="about-section-heading">
+        <p class="content-eyebrow">What we believe</p>
+        <h2 id="beliefs-heading">Our Beliefs</h2>
+      </div>
+      <div class="about-beliefs-grid">
+        <section>
+          <h3>God the Father</h3>
+          <p>We believe in God the Father, Creator and sovereign Lord of the universe.</p>
+        </section>
+        <section>
+          <h3>Jesus Christ</h3>
+          <p>We believe Jesus Christ, God’s Son, lived a perfect and sinless life, died on the cross for the forgiveness of sin, rose again, and gives abundant and eternal life.</p>
+        </section>
+        <section>
+          <h3>The Holy Spirit</h3>
+          <p>We believe the Holy Spirit comforts us, convicts us of sin, interprets Holy Scripture, and draws us to the Father.</p>
+        </section>
+        <section>
+          <h3>Christ’s Return</h3>
+          <p>We believe Jesus will physically return to receive those who believe in Him, and will live and reign for eternity.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="about-pastor" aria-labelledby="pastor-heading">
+      <div>
+        <p class="content-eyebrow">A welcome from our pastor</p>
+        <h2 id="pastor-heading">You Are Welcome Here</h2>
+        <div class="about-pastor-message">{{ site.data.pastor_welcome.welcome | markdownify }}</div>
+        <p class="about-pastor-signature">{{ site.data.pastor_welcome.name }}</p>
+      </div>
+    </section>
+  </div>
+</section>

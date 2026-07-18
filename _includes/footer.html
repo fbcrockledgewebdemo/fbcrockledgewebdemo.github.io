@@ -1,3 +1,4 @@
+{% assign church = site.data.church %}
 <footer class="site-footer">
   <div class="footer-gold-rule" aria-hidden="true"></div>
 
@@ -6,39 +7,41 @@
       <div class="footer-brand-row">
         <span class="footer-dove" aria-hidden="true"></span>
         <div>
-          <h2 id="footer-church-name">First Baptist Church</h2>
-          <p class="footer-location">of Rockledge</p>
+          <h2 id="footer-church-name">{{ church.brand_name }}</h2>
+          <p class="footer-location">{{ church.location_name }}</p>
         </div>
       </div>
-      <p class="footer-statement">Proclaiming the eternal truth of Jesus Christ in an ever-changing world.</p>
+      <p class="footer-statement">{{ church.mission_statement }}</p>
     </section>
 
     <section class="footer-section" aria-labelledby="service-times-heading">
       <h2 id="service-times-heading">Service Times</h2>
       <dl class="service-times">
-        <div><dt>Sunday Adult Bible Study</dt><dd>9:45 AM</dd></div>
-        <div><dt>Sunday Worship Service</dt><dd>11:00 AM</dd></div>
-        <div><dt>Children's Church (1st &amp; 3rd Sundays)</dt><dd>11:00 AM</dd></div>
-        <div><dt>Wednesday Bible Study &amp; Prayer Meeting</dt><dd>6:00 PM</dd></div>
+        {% for service in site.data.services.services %}
+          <div><dt>{{ service.footer_label | default: service.title }}</dt><dd>{{ service.time }}</dd></div>
+        {% endfor %}
       </dl>
     </section>
 
     <section class="footer-section" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Contact</h2>
       <address>
-        <p>1810 Cedar Street<br>Rockledge, FL 32955</p>
-        <a class="footer-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=1810+Cedar+Street,+Rockledge,+FL+32955" target="_blank" rel="noopener">Get Directions</a>
-        <a href="tel:+13216361493">(321) 636-1493</a>
-        <a href="mailto:fbc_rock@outlook.com">fbc_rock@outlook.com</a>
+        <p>{{ church.address_line_1 }}<br>{{ church.city }}, {{ church.region }} {{ church.postal_code }}</p>
+        <a class="footer-directions" href="{{ church.directions_url | escape }}" target="_blank" rel="noopener">Get Directions</a>
+        <a href="tel:{{ church.phone_e164 }}">{{ church.phone_display }}</a>
+        <a href="mailto:{{ church.email }}">{{ church.email }}</a>
       </address>
     </section>
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; {{ site.time | date: '%Y' }} First Baptist Church of Rockledge</p>
+    <p>&copy; {{ site.time | date: '%Y' }} {{ church.name }}</p>
     <nav aria-label="Footer navigation">
-      <a href="https://churches.sbc.net/church/first-baptist-church-of-rockledge/" target="_blank" rel="noopener">SBC Church Directory</a>
-      <a href="https://www.facebook.com/1stBaptistChurchRockledge" target="_blank" rel="noopener">Facebook</a>
+      {% for social in church.social_links %}
+        {% if social.show_in_footer %}
+          <a href="{{ social.url }}" target="_blank" rel="noopener">{{ social.name }}</a>
+        {% endif %}
+      {% endfor %}
     </nav>
   </div>
 </footer>

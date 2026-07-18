@@ -1,0 +1,6 @@
+<section class="{% if include.service.featured %}service-feature{% else %}service-card{% endif %}">
+  <p class="service-day">{{ include.service.day_label }}</p>
+  <h2>{{ include.service.title }}</h2>
+  <p class="service-time">{{ include.service.time }}</p>
+  <p>{{ include.service.description }}</p>
+</section>

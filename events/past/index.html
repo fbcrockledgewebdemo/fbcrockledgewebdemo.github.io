@@ -1,0 +1,53 @@
+---
+layout: default
+title: Past Events | First Baptist Church of Rockledge
+description: Past events at First Baptist Church of Rockledge.
+---
+{% assign current_timestamp = site.time | date: "%s" %}
+{% assign events = site.events | sort: "start" | reverse %}
+
+<section class="content-index" aria-labelledby="past-events-heading">
+  <div class="content-shell">
+    <a class="content-back-link" href="{{ '/events/' | relative_url }}">← Upcoming Events</a>
+
+    <header class="content-index-header">
+      <p class="content-eyebrow">Remembering Our Time Together</p>
+      <h1 id="past-events-heading">Past Events</h1>
+      <p>Look back at concerts, fellowship, and opportunities our church family has shared.</p>
+    </header>
+
+    <div class="content-card-list">
+      {% assign has_past_events = false %}
+      {% for event in events %}
+        {% assign event_end = event.end | default: "" | strip %}
+        {% if event_end != "" %}
+          {% assign end_timestamp = event.end | date: "%s" %}
+        {% else %}
+          {% assign end_timestamp = event.start | date: "%Y-%m-%d 23:59:59 %z" | date: "%s" %}
+        {% endif %}
+        {% if end_timestamp < current_timestamp %}
+          {% assign has_past_events = true %}
+          <article class="content-card event-card">
+            {% assign image_path = event.image | default: "" | strip %}
+            {% assign image_alt = event.image_alt | default: "" | strip %}
+            {% if image_path != "" and image_alt != "" %}
+              <a class="content-card-image" href="{{ event.url | relative_url }}">
+                <img src="{{ image_path | relative_url }}" alt="{{ image_alt | escape }}" loading="lazy">
+              </a>
+            {% endif %}
+            <div class="content-card-body">
+              {% include event-meta.html event=event %}
+              <h2><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h2>
+              {% if event.summary %}<p>{{ event.summary }}</p>{% endif %}
+              <a class="content-card-link" href="{{ event.url | relative_url }}">Event details <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+
+      {% unless has_past_events %}
+        <p class="content-empty-state">Past events will be shared here as our church gathers together.</p>
+      {% endunless %}
+    </div>
+  </div>
+</section>

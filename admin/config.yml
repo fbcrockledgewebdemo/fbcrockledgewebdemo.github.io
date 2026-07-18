@@ -1,0 +1,291 @@
+backend:
+  name: github
+  repo: fbcrockledgewebdemo/fbcrockledgewebdemo.github.io
+  branch: main
+  base_url: https://decap-auth.fbcrockledge-webdemo.workers.dev
+  auth_endpoint: /auth
+  commit_messages:
+    create: "Create {{collection}}: {{slug}}"
+    update: "Update {{collection}}: {{slug}}"
+    delete: "Delete {{collection}}: {{slug}}"
+    uploadMedia: "Upload {{path}}"
+
+site_url: https://fbcrockledgewebdemo.github.io
+display_url: https://fbcrockledgewebdemo.github.io
+publish_mode: simple
+media_folder: assets/images/uploads
+public_folder: /assets/images/uploads
+
+collections:
+  - name: site_settings
+    label: Site Settings
+    files:
+      - name: home_hero
+        label: Home Hero
+        file: _data/home_hero.yml
+        fields:
+          - label: Hero image
+            name: image
+            widget: image
+            required: true
+            choose_url: false
+            media_library:
+              config:
+                max_file_size: 5242880
+          - label: Image description
+            name: image_alt
+            widget: string
+            required: true
+            hint: "Required. Describe the image for visitors using screen readers."
+
+      - name: about_gallery
+        label: Photo Gallery
+        file: _data/about_gallery.yml
+        fields:
+          - label: Photos
+            name: gallery
+            widget: list
+            summary: "{{fields.alt}}"
+            hint: "Drag photos into the order they should appear on the About page."
+            fields:
+              - label: Photo
+                name: image
+                widget: image
+                required: true
+                choose_url: false
+                media_library:
+                  config:
+                    max_file_size: 5242880
+              - label: Image description
+                name: alt
+                widget: string
+                required: true
+                hint: "Required. Describe the photo for visitors using screen readers."
+
+      - name: pastor_welcome
+        label: Pastor Welcome
+        file: _data/pastor_welcome.yml
+        fields:
+          - label: Pastor name
+            name: name
+            widget: string
+          - label: Welcome message
+            name: welcome
+            widget: markdown
+            hint: "Use separate paragraphs to make the message easy to read."
+
+      - name: service_times
+        label: Service Times
+        file: _data/services.yml
+        fields:
+          - label: Services
+            name: services
+            widget: list
+            summary: "{{fields.title}} — {{fields.time}}"
+            hint: "Drag services into the order they should appear in the footer. The featured service appears first on the Services page."
+            fields:
+              - label: Service name
+                name: title
+                widget: string
+              - label: Footer label
+                name: footer_label
+                widget: string
+                hint: "The concise name shown in the footer, such as Sunday Worship Service."
+              - label: Day or frequency
+                name: day_label
+                widget: string
+                hint: "Examples: Sunday, Wednesday, or First & third Sundays."
+              - label: Time
+                name: time
+                widget: string
+                hint: "Example: 11:00 AM"
+              - label: Services-page description
+                name: description
+                widget: text
+                hint: "A short description shown only on the Services page."
+              - label: Feature on Services page
+                name: featured
+                widget: boolean
+                default: false
+                hint: "Use for the one service that should appear first with a dark background."
+              - label: Show on home page
+                name: show_on_home
+                widget: boolean
+                default: false
+                hint: "Enable for the services highlighted on the home page."
+
+      - name: regular_gatherings
+        label: Regular Gatherings
+        file: _data/gatherings.yml
+        fields:
+          - label: Gatherings
+            name: gatherings
+            widget: list
+            summary: "{{fields.title}} — {{fields.schedule}}"
+            hint: "Use this for ongoing ministries and fellowship groups, not one-time events. Drag to set the order on the Services page."
+            fields:
+              - label: Gathering name
+                name: title
+                widget: string
+              - label: Schedule
+                name: schedule
+                widget: string
+                hint: "Example: Second Thursday of each month."
+              - label: Time
+                name: time
+                widget: string
+                hint: "Example: 10:00 AM"
+              - label: Location
+                name: location
+                widget: string
+                required: false
+                hint: "Use a general location if it can change, such as Fellowship Hall or announced monthly."
+              - label: Description
+                name: description
+                widget: text
+              - label: Schedule note
+                name: note
+                widget: string
+                required: false
+                hint: "Optional: use for a seasonal pause or other temporary update."
+
+      - name: church_information
+        label: Church Information
+        file: _data/church.yml
+        fields:
+          - { name: name, widget: hidden, default: First Baptist Church of Rockledge }
+          - { name: brand_name, widget: hidden, default: First Baptist Church }
+          - { name: location_name, widget: hidden, default: of Rockledge }
+          - { name: tagline, widget: hidden, default: Honoring God Through Authentic Worship }
+          - { name: mission_statement, widget: hidden, default: Proclaiming the eternal truth of Jesus Christ in an ever-changing world. }
+          - { name: address_line_1, widget: hidden, default: 1810 Cedar Street }
+          - { name: city, widget: hidden, default: Rockledge }
+          - { name: region, widget: hidden, default: FL }
+          - { name: postal_code, widget: hidden, default: "32955" }
+          - { name: country, widget: hidden, default: US }
+          - { label: Directions link, name: directions_url, widget: string }
+          - { label: Phone number shown on the site, name: phone_display, widget: string }
+          - { label: Phone number for links and search engines, name: phone_e164, widget: string, hint: "Use international format, such as +13216361493." }
+          - { label: Email address, name: email, widget: string }
+          - { label: Office days, name: office_days, widget: string }
+          - { label: Office hours, name: office_hours, widget: string }
+          - { label: Office opening time, name: office_opens, widget: string, hint: "Use 24-hour time, such as 07:30." }
+          - { label: Office closing time, name: office_closes, widget: string, hint: "Use 24-hour time, such as 15:00." }
+          - label: Public profiles
+            name: social_links
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: URL, name: url, widget: string }
+              - { label: Show in footer, name: show_in_footer, widget: boolean, default: false }
+
+  - name: events
+    label: Events
+    label_singular: Event
+    folder: _events
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{start}}"
+    fields:
+      - label: Event title
+        name: title
+        widget: string
+      - label: Start date and time
+        name: start
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: h:mm A
+        format: "YYYY-MM-DD HH:mm:ss Z"
+      - label: Date-only event
+        name: all_day
+        widget: boolean
+        required: false
+        default: false
+        hint: "Use when the event date is known but an exact time is not. The time will not be shown on the site."
+      - label: End date and time
+        name: end
+        widget: datetime
+        required: false
+        hint: "Optional. If provided, it must be after the start date and time."
+        date_format: YYYY-MM-DD
+        time_format: h:mm A
+        format: "YYYY-MM-DD HH:mm:ss Z"
+      - label: Location
+        name: location
+        widget: string
+        required: false
+      - label: Short summary
+        name: summary
+        widget: text
+        required: false
+        hint: "A one- or two-sentence preview for the Events page."
+      - label: Featured image
+        name: image
+        widget: image
+        required: false
+        choose_url: false
+        media_library:
+          config:
+            max_file_size: 5242880
+      - label: Image description
+        name: image_alt
+        widget: string
+        required: false
+        hint: "Required when a featured image is selected. Describe the image for visitors using screen readers."
+      - label: More-information link
+        name: link
+        widget: string
+        required: false
+        hint: "Optional: a registration page, Facebook event, or other relevant link."
+      - label: Link label
+        name: link_label
+        widget: string
+        required: false
+        default: Learn more
+      - label: Event details
+        name: body
+        widget: markdown
+
+  - name: posts
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: _posts
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - label: Post title
+        name: title
+        widget: string
+      - label: Publish date
+        name: date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+      - label: Author
+        name: author
+        widget: string
+        required: false
+      - label: Short summary
+        name: summary
+        widget: text
+        required: false
+        hint: "A one- or two-sentence preview for the Blog page."
+      - label: Featured image
+        name: image
+        widget: image
+        required: false
+        choose_url: false
+        media_library:
+          config:
+            max_file_size: 5242880
+      - label: Image description
+        name: image_alt
+        widget: string
+        required: false
+        hint: "Required when a featured image is selected. Describe the image for visitors using screen readers."
+      - label: Post content
+        name: body
+        widget: markdown

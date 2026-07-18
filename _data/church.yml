@@ -1,0 +1,32 @@
+name: First Baptist Church of Rockledge
+brand_name: First Baptist Church
+location_name: of Rockledge
+tagline: Honoring God Through Authentic Worship
+mission_statement: Proclaiming the eternal truth of Jesus Christ in an ever-changing world.
+address_line_1: 1810 Cedar Street
+city: Rockledge
+region: FL
+postal_code: "32955"
+country: US
+directions_url: https://www.google.com/maps/dir/?api=1&destination=1810+Cedar+Street,+Rockledge,+FL+32955
+phone_display: (321) 636-1493
+phone_e164: "+13216361493"
+email: fbc_rock@outlook.com
+office_days: Monday–Thursday
+office_hours: 7:30 AM–3:00 PM
+office_opens: "07:30"
+office_closes: "15:00"
+office_hours_note: Office hours may change for holidays or special events.
+social_links:
+  - name: SBC Church Directory
+    url: https://churches.sbc.net/church/first-baptist-church-of-rockledge/
+    show_in_footer: true
+  - name: Facebook
+    url: https://www.facebook.com/1stBaptistChurchRockledge
+    show_in_footer: true
+  - name: Yelp
+    url: https://www.yelp.com/biz/first-baptist-church-of-rockledge-rockledge
+    show_in_footer: false
+  - name: Tripadvisor
+    url: https://www.tripadvisor.com/Attraction_Review-g34593-d32870737-Reviews-First_Baptist_Church_Of_Rockledge_Florida-Rockledge_Brevard_County_Florida.html
+    show_in_footer: false

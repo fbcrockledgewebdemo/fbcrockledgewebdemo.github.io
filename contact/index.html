@@ -1,5 +1,62 @@
 ---
 layout: default
 title: Contact | First Baptist Church of Rockledge
-description: Contact First Baptist Church of Rockledge.
+description: Contact First Baptist Church of Rockledge at 1810 Cedar Street, Rockledge, FL 32955. Call (321) 636-1493 or email fbc_rock@outlook.com.
 ---
+{% assign church = site.data.church %}
+<section class="contact-page" aria-labelledby="contact-heading">
+  <div class="contact-shell">
+    <header class="contact-intro">
+      <p class="content-eyebrow">{{ church.name }}</p>
+      <h1 id="contact-heading">Contact Us</h1>
+      <p>We would be glad to welcome you, answer a question, or help you plan your visit.</p>
+    </header>
+
+    <div class="contact-details">
+      <section class="contact-card" aria-labelledby="visit-heading">
+        <h2 id="visit-heading">Visit Us</h2>
+        <address>
+          <a href="{{ church.directions_url | escape }}" target="_blank" rel="noopener">
+            {{ church.address_line_1 }}<br>
+            {{ church.city }}, {{ church.region }} {{ church.postal_code }}
+          </a>
+        </address>
+        <a class="contact-action" href="{{ church.directions_url | escape }}" target="_blank" rel="noopener">Get Directions</a>
+      </section>
+
+      <section class="contact-card" aria-labelledby="reach-heading">
+        <h2 id="reach-heading">Call or Email</h2>
+        <dl>
+          <div>
+            <dt>Phone</dt>
+            <dd><a href="tel:{{ church.phone_e164 }}">{{ church.phone_display }}</a></dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:{{ church.email }}">{{ church.email }}</a></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="contact-card" aria-labelledby="office-heading">
+        <h2 id="office-heading">Church Office</h2>
+        <dl>
+          <div>
+            <dt>{{ church.office_days }}</dt>
+            <dd>{{ church.office_hours }}</dd>
+          </div>
+        </dl>
+        <p>{{ church.office_hours_note }}</p>
+      </section>
+    </div>
+
+    <aside class="contact-template-card" aria-labelledby="template-heading">
+      <div>
+        <p class="content-eyebrow">A resource for churches</p>
+        <h2 id="template-heading">Building a church website?</h2>
+        <p>Other churches are welcome to use this site’s open-source code as a starting point for their own website.</p>
+      </div>
+      <a class="contact-template-link" href="https://github.com/fbcrockledgewebdemo/fbcrockledgewebdemo.github.io" target="_blank" rel="noopener">View the code on GitHub</a>
+    </aside>
+  </div>
+</section>

@@ -3,3 +3,34 @@ layout: default
 title: Blog | First Baptist Church of Rockledge
 description: News and updates from First Baptist Church of Rockledge.
 ---
+<section class="content-index" aria-labelledby="blog-heading">
+  <div class="content-shell">
+    <header class="content-index-header">
+      <p class="content-eyebrow">From our church family</p>
+      <h1 id="blog-heading">Church News</h1>
+      <p>Announcements, reflections, and updates from First Baptist Church of Rockledge.</p>
+    </header>
+
+    <div class="content-card-list">
+      {% for post in site.posts %}
+        <article class="content-card post-card">
+          {% assign image_path = post.image | default: "" | strip %}
+          {% assign image_alt = post.image_alt | default: "" | strip %}
+          {% if image_path != "" and image_alt != "" %}
+            <a class="content-card-image" href="{{ post.url | relative_url }}">
+              <img src="{{ image_path | relative_url }}" alt="{{ image_alt | escape }}">
+            </a>
+          {% endif %}
+          <div class="content-card-body">
+            <p class="content-card-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time></p>
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            {% if post.summary %}<p>{{ post.summary }}</p>{% endif %}
+            <a class="content-card-link" href="{{ post.url | relative_url }}">Read more <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      {% else %}
+        <p class="content-empty-state">Church news and updates will be shared here soon.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

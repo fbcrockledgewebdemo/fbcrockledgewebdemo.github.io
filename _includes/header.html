@@ -1,22 +1,23 @@
+{% assign church = site.data.church %}
 <header class="site-header">
   {% capture navigation_links %}
-    <li class="nav-item"><a href="{{ '/' | relative_url }}">Home</a></li>
-    <li class="nav-item"><a href="{{ '/about' | relative_url }}">About</a></li>
-    <li class="nav-item"><a href="{{ '/events' | relative_url }}">Events</a></li>
-    <li class="nav-item"><a href="{{ '/services' | relative_url }}">Services</a></li>
-    <li class="nav-item"><a href="{{ '/blog' | relative_url }}">Blog</a></li>
-    <li class="nav-item"><a href="{{ '/contact' | relative_url }}">Contact</a></li>
+    <li class="nav-item"><a href="{{ '/' | relative_url }}"><span>Home</span></a></li>
+    <li class="nav-item"><a href="{{ '/about' | relative_url }}"><span>About</span></a></li>
+    <li class="nav-item"><a href="{{ '/services' | relative_url }}"><span>Services</span></a></li>
+    <li class="nav-item"><a href="{{ '/events' | relative_url }}"><span>Events</span></a></li>
+    <li class="nav-item"><a href="{{ '/blog' | relative_url }}"><span>Blog</span></a></li>
+    <li class="nav-item"><a href="{{ '/contact' | relative_url }}"><span>Contact</span></a></li>
   {% endcapture %}
 
   <div class="header-top-rule" aria-hidden="true"></div>
 
   <div class="header-inner">
-    <a class="brand" href="{{ '/' | relative_url }}" aria-label="First Baptist Church of Rockledge home">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="{{ church.name }} home">
       <span class="brand-dove" aria-hidden="true"></span>
       <span class="brand-copy">
-        <span class="brand-name">First Baptist Church</span>
-        <span class="brand-location">of Rockledge</span>
-        <span class="brand-tagline">Honoring God Through Authentic Worship</span>
+        <span class="brand-name">{{ church.brand_name }}</span>
+        <span class="brand-location">{{ church.location_name }}</span>
+        <span class="brand-tagline">{{ church.tagline }}</span>
       </span>
     </a>
 

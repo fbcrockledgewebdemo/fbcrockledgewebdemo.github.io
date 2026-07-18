@@ -1,0 +1,14 @@
+{% assign event = include.event %}
+<p class="event-meta{% if include.class %} {{ include.class }}{% endif %}">
+  <span class="event-meta-item">
+    <time datetime="{{ event.start | date_to_xmlschema }}">{{ event.start | date: "%A, %B %-d, %Y" }}</time>
+    {% unless event.all_day %}
+      <span aria-hidden="true">·</span>
+      <time datetime="{{ event.start | date_to_xmlschema }}">{{ event.start | date: "%l:%M %p" | strip }}</time>{% if event.end %}–<time datetime="{{ event.end | date_to_xmlschema }}">{{ event.end | date: "%l:%M %p" | strip }}</time>{% endif %}
+    {% endunless %}
+  </span>
+  {% if event.location %}
+    <span class="event-meta-separator" aria-hidden="true">|</span>
+    <span class="event-meta-item">{{ event.location }}</span>
+  {% endif %}
+</p>

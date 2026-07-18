@@ -1,5 +1,64 @@
 ---
 layout: default
 title: Services | First Baptist Church of Rockledge
-description: Services at First Baptist Church of Rockledge.
+description: Join First Baptist Church of Rockledge for Sunday worship, adult Bible study, Children's Church, and Wednesday Bible Study and Prayer Meeting.
 ---
+<section class="services-page" aria-labelledby="services-heading">
+  <div class="services-shell">
+    <header class="services-intro">
+      <p class="content-eyebrow">Worship and fellowship</p>
+      <h1 id="services-heading">Join Us This Week</h1>
+      <p>Whether you are exploring faith, new to the area, or looking for a church home, you are welcome to join us as we worship, learn, and grow together.</p>
+    </header>
+
+    <div class="services-schedule">
+      {% for service in site.data.services.services %}
+        {% if service.featured %}
+          {% include service-card.html service=service %}
+        {% endif %}
+      {% endfor %}
+      {% for service in site.data.services.services %}
+        {% unless service.featured %}
+          {% include service-card.html service=service %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+
+    {% assign gatherings = site.data.gatherings.gatherings %}
+    {% if gatherings and gatherings.size > 0 %}
+      <section class="regular-gatherings" aria-labelledby="regular-gatherings-heading">
+        <header class="regular-gatherings-header">
+          <p class="content-eyebrow">Ongoing ministry and fellowship</p>
+          <h2 id="regular-gatherings-heading">Regular Gatherings</h2>
+          <p>These ministries meet regularly. Check the details below, or contact us if you have a question before you come.</p>
+        </header>
+
+        <div class="gatherings-schedule">
+          {% for gathering in gatherings %}
+            <section class="gathering-card">
+              <p class="gathering-day">{{ gathering.schedule }}</p>
+              <h3>{{ gathering.title }}</h3>
+              <p class="gathering-time">{{ gathering.time }}</p>
+              {% if gathering.location %}<p class="gathering-location">{{ gathering.location }}</p>{% endif %}
+              <p>{{ gathering.description }}</p>
+              {% if gathering.note %}<p class="gathering-note">{{ gathering.note }}</p>{% endif %}
+            </section>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+  </div>
+</section>
+
+<section class="services-visit-section" aria-labelledby="visit-services-heading">
+  <div class="services-shell">
+    <aside class="services-visit">
+      <div>
+        <h2 id="visit-services-heading">Planning your first visit?</h2>
+        <p>We would be glad to welcome you and introduce you to our church family.</p>
+      </div>
+      <a href="{{ '/contact' | relative_url }}">Contact &amp; Directions</a>
+    </aside>
+  </div>
+</section>

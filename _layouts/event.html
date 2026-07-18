@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<article class="content-detail event-detail">
+  <div class="content-shell">
+    <a class="content-back-link" href="{{ '/events' | relative_url }}">← All events</a>
+
+    <header class="content-detail-header">
+      <p class="content-eyebrow">Church event</p>
+      <h1>{{ page.title }}</h1>
+      {% include event-meta.html event=page class="content-detail-meta" %}
+    </header>
+
+    {% assign image_path = page.image | default: "" | strip %}
+    {% assign image_alt = page.image_alt | default: "" | strip %}
+    {% if image_path != "" and image_alt != "" %}
+      <figure class="content-detail-image">
+        <img src="{{ image_path | relative_url }}" alt="{{ image_alt | escape }}">
+      </figure>
+    {% endif %}
+
+    <div class="content-prose">
+      {{ content }}
+    </div>
+
+    {% if page.link %}
+      <p class="content-action"><a href="{{ page.link }}">{{ page.link_label | default: 'Learn more' }} <span aria-hidden="true">→</span></a></p>
+    {% endif %}
+
+    {% include share-links.html kind="event" %}
+  </div>
+</article>
