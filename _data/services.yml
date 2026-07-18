@@ -1,0 +1,29 @@
+services:
+  - title: Adult Bible Study
+    footer_label: Sunday Adult Bible Study
+    day_label: Sunday
+    time: "9:45 AM"
+    description: Begin the morning with biblical teaching, conversation, and fellowship.
+    featured: false
+    show_on_home: true
+  - title: Worship Service
+    footer_label: Sunday Worship Service
+    day_label: Sunday
+    time: "11:00 AM"
+    description: Gather with us for traditional, authentic worship centered on Jesus Christ and God’s Word.
+    featured: true
+    show_on_home: true
+  - title: Children's Church
+    footer_label: Children's Church (1st & 3rd Sundays)
+    day_label: First & third Sundays
+    time: "11:00 AM"
+    description: Bible lessons and fellowship for children during the worship hour.
+    featured: false
+    show_on_home: false
+  - title: Bible Study & Prayer Meeting
+    footer_label: Wednesday Bible Study & Prayer Meeting
+    day_label: Wednesday
+    time: "6:00 PM"
+    description: Midweek time together in Scripture and prayer.
+    featured: false
+    show_on_home: false
