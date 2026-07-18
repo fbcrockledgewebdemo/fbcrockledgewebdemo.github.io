@@ -540,6 +540,10 @@ a {
   border-radius: 0.35rem;
 }
 
+.home-section-muted .home-about-panel {
+  background: var(--surface-light);
+}
+
 .home-about-panel > div {
   max-width: 44rem;
 }
